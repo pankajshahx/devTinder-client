@@ -29,6 +29,14 @@ const Feed = () => {
     fetchFeed();
   }, []);
 
+  if ((feed || []).length === 0) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <h1 className="text-2xl font-bold">No matching users found</h1>
+      </div>
+    );
+  }
+
   return (
     feed && (
       <div className="flex flex-wrap justify-center gap-6 p-6">
