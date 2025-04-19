@@ -1,25 +1,28 @@
 import React from "react";
 
 const UserCard = ({ user }) => {
-  const { firstName, lastName, about, age, gender, photoUrl } = user;
   return (
-    <div className="flex justify-center items-center my-20 f">
-      <div className="card bg-base-400 w-96 shadow-sm p-2">
-        <figure>
-          <img src={photoUrl} alt="profile" />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">
-            {firstName + " " + lastName}
-            <div className="badge badge-success">NEW</div>
-          </h2>
-          {age && gender && <p>{age + ", " + gender}</p>}
-          {about && <p>{about}</p>}
-          <div className="card-actions justify-center">
-            <button className="btn btn-primary">Ignore</button>
-            <button className="btn btn-secondary">Interested</button>
-          </div>
+    <div className="bg-white shadow-lg rounded-lg p-6 w-96 h-[540px] flex flex-col items-center">
+      <h2 className="text-xl font-bold mb-4">User Profile</h2>
+      <div className="avatar">
+        <div className="w-40 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+          <img
+            src={user?.photoUrl || "profile"}
+            alt="profile"
+            className="object-cover"
+          />
         </div>
+      </div>
+      <h2 className="text-lg font-bold mt-4">
+        {user.firstName} {user.lastName}
+      </h2>
+      {user.age && <p className="text-gray-500">Age: {user.age}</p>}
+      {user.gender && <p className="text-gray-500">Gender: {user.gender}</p>}
+      {user.skills && <p className="text-gray-500">Skills: {user.skills}</p>}
+      {user.about && <p className="text-gray-500 text-center">{user.about}</p>}
+      <div className="mt-4 flex gap-4">
+        <button className="btn btn-error">Ignore</button>
+        <button className="btn btn-success">Interested</button>
       </div>
     </div>
   );
